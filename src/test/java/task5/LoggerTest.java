@@ -20,7 +20,7 @@ class LoggerTest {
     }
 
     @Test
-    void shouldReturn() {
+    void shouldReturnFalseIfValueIsNull() {
         Assertions.assertFalse(logger.isPassword(null));
     }
 
