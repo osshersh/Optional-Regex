@@ -1,7 +1,6 @@
 package task5;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -12,29 +11,24 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LoggerTest {
-    Logger logger;
-
-    @BeforeEach
-    void init() {
-        logger = new Logger();
-    }
+    Logger logger = new Logger();
 
     @Test
     void shouldReturnFalseIfValueIsNull() {
-        Assertions.assertFalse(logger.isPassword(null));
+        Assertions.assertFalse(logger.isPasswordCorrect(null));
     }
 
     @ParameterizedTest
     @MethodSource("providePassword")
     void shouldReturnTrueWhenIsPassword(String password) {
-        boolean isPassword = logger.isPassword(password);
+        boolean isPassword = logger.isPasswordCorrect(password);
         Assertions.assertTrue(isPassword);
     }
 
     @ParameterizedTest
     @MethodSource("provideNotPassword")
     void shouldReturnFalseWhenIsNotPassword(String number) {
-        assertFalse(logger.isPassword(number));
+        assertFalse(logger.isPasswordCorrect(number));
     }
 
 
@@ -49,12 +43,14 @@ class LoggerTest {
     }
 
     private static Stream<Arguments> provideNotPassword() {
-        return Stream.of(Arguments.of("password"),
+        return Stream.of(
+                Arguments.of("password"),
                 Arguments.of("passwordE"),
                 Arguments.of("Y4dhd"),
                 Arguments.of("5674444447"),
                 Arguments.of("4password"),
                 Arguments.of("5paSsword2023"),
+                Arguments.of("Konrad123!"),
                 Arguments.of("23passWord"),
                 Arguments.of("pa2023Word"));
     }
