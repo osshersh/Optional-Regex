@@ -1,7 +1,6 @@
 package task4;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -9,24 +8,19 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RegexTest {
-    Regex regex;
-
-    @BeforeEach
-    void init() {
-        regex = new Regex();
-    }
+    Regex regex = new Regex();
 
     @Test
     void shouldReturnExceptionWhenValueIsNull() {
-        assertThrows(NoSuchElementException.class, () -> {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             regex.getFloatNumbers(null);
         });
+        assertEquals("Podana wartość nie może być nullem.", exception.getMessage());
     }
 
     @ParameterizedTest
