@@ -1,6 +1,5 @@
 package task6;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -11,12 +10,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AgeTest {
-    Age age;
-
-    @BeforeEach
-    void init() {
-        age = new Age();
-    }
+    Age age = new Age();
 
     @ParameterizedTest
     @MethodSource("provideDateToGetAge")
@@ -37,15 +31,11 @@ class AgeTest {
     }
 
     @Test
-    void shouldReturnTrueWhenDateIsNull() {
-        String isNull = age.getDayOfBirthday(null);
-        assertEquals("is null", isNull);
-    }
-
-    @Test
-    void shouldReturnZeroWhenDateIsNull() {
-        int isNull = age.getAge(null);
-        assertEquals(0, isNull);
+    void shouldReturnExceptionWhenValueIsNull() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            age.getAge(null);
+        });
+        assertEquals("Date is Null", exception.getMessage());
     }
 
     private static Stream<Arguments> provideDateToGetAge() {
