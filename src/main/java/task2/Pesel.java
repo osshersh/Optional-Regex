@@ -5,12 +5,12 @@ import java.util.regex.Pattern;
 
 public class Pesel {
 
-    public boolean validatePesel(String idNumber) {
-        if(idNumber == null){
-            throw new NullPointerException("value can't be null");
+    public boolean validatePesel(String pesel) {
+        if (pesel == null) {
+            throw new IllegalArgumentException("Value can't be null");
         }
         Pattern pattern = Pattern.compile("\\b^\\d{11}\\b(?![-.+])");
-        Matcher matcher = pattern.matcher(idNumber);
+        Matcher matcher = pattern.matcher(pesel);
         return matcher.matches();
     }
 }

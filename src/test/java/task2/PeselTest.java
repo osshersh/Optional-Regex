@@ -20,9 +20,10 @@ class PeselTest {
 
     @Test
     void shouldReturnExceptionWhenValueIsNull() {
-        assertThrows(NullPointerException.class, () -> {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             pesel.validatePesel(null);
         });
+        assertEquals("Value can't be null", exception.getMessage());
     }
 
     @ParameterizedTest
