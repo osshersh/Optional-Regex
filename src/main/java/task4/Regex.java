@@ -30,6 +30,8 @@ public class Regex {
     }
 
     private void checkNull(String value) {
-        if (value == null) throw new IllegalArgumentException("Podana wartość nie może być nullem.");
+        if (value == null) {
+            throw new IllegalArgumentException("Podana wartość nie może być nullem.");
+        }
     }
 }
