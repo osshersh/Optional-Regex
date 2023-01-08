@@ -34,6 +34,8 @@ class AgeTest {
     void shouldReturnExceptionWhenValueIsNull() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             age.getAge(null);
+            age.getDayOfBirthday(null);
+            age.getWeekOfBirthday(null);
         });
         assertEquals("Date is Null", exception.getMessage());
     }
