@@ -8,12 +8,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Logger {
-    public boolean isPassword(String password) {
+    public boolean isPasswordCorrect(String password) {
         Optional<String> check = Optional.ofNullable(password);
         if (check.isEmpty()) {
             return false;
         }
-        Pattern pattern = Pattern.compile("^(?=.*\\d)(?=.*[A-Z]).{7,}");
+        Pattern pattern = Pattern.compile("(?=.*\\d)(?=.*[A-Z]).{7,}");
         Matcher matcher = pattern.matcher(password);
         while (matcher.find()) {
             if (isFindCoincidence(matcher)) {
